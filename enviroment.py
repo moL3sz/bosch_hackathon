@@ -40,7 +40,6 @@ class DataRow:
         for i in range(0,7,2):
             x,y = dists[i],dists[i+1]
             speed_x,speed_y = speeds[i],speeds[i+1]
-            print(x,y,speed_x,speed_y)
             objects.append(Object(x,y,speed_x,speed_y))
         return objects
         
@@ -55,6 +54,8 @@ class Object:
     
     def potential(self):
         self.color = (255,0,0)
+    def __repr__(self):
+        return '(x: {0}, y: {1}, speed_x: {2}, speed_y: {3})'.format(self.x, self.y, self.speed_x, self.speed_y)
         
 class Vehicle:
     def __init__(self, speed, yawRate):
