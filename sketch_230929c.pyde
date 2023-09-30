@@ -55,13 +55,13 @@ def MM(A,B):
 
 
 
-# legenráljuk az autó jövőbeli poziciojat a jelen infok alapján
+# Generate the future path from the current time based on the current vehicle information
 def generate_possible_future(car, iteration=20):
     points = []
     pos_b = iteration/3 # lépte szabályzó
     pos, rotation = 0,0
     prev = 1
-    W_tolerance = 400 # a future path, milyen széles legyen
+    W_tolerance = 400 # a future path, Width of the area
      
     
     for t in range(1,iteration):
@@ -164,10 +164,6 @@ def draw():
     scale(4)
     rect(-100,-50,160,80)
     
-    
-    #line(-100,-200, 100,-200)
-    #line(-100,200, 100,200)
-    
     pop()
     textSize(15);
     fill(255,255,255,100)
@@ -225,13 +221,15 @@ def draw():
         # line(0,0,o.x, o.y)
         textSize(200)
         text("Dist: " + str(round(sqrt((o.x / 128 )**2 + (o.y / 128)**2),3)) + "m", o.x, o.y)
+        text("Speed: " + str(round(sqrt((o.speed_x / 256 )**2 + (o.speed_y / 256)**2),3)) + "m/s", o.x, o.y-150)
+
         
         # Check if any objects is potetntal then make the car brake
         if potential:
             fill(255,0,0)
             g_potential = potential
             prev_speed = max(0,car.speed * 0.91 )
-            text("POTENTIAL TARGET", o.x, o.y-100)
+            text("POTENTIAL TARGET", o.x, o.y-350)
         
     
         ellipse(o.x, o.y, 100,100)

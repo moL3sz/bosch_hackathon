@@ -15,10 +15,6 @@ def normalize(rawDataRow):
 
 
 
-def filterObjects(data):
-    pass
-    
-
 
 def calculate_zero_values(buffer, i):
 
