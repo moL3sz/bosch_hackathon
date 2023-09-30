@@ -1,18 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 
 def main():
     
     df = pd.read_csv("./data.csv")
-    object1 = df[["FirstObjectDistance_X", "FirstObjectDistance_Y"]]
+    df["Vector"] = np.sqrt((df["FirstObjectDistance_X"] - (df["FirstObjectSpeed_X"] + df["FirstObjectDistance_X"]))**2 + \
+        (df["FirstObjectDistance_Y"] - (df["FirstObjectSpeed_Y"] + df["FirstObjectDistance_Y"]))**2)
     
-    object1[object1 == 0] = np.nan
-    
-    
-    object1["FirstObjectDistance_X"].interpolate(method='polynomial', order=3, inplace=True)
-    plt.plot(object1["FirstObjectDistance_X"], object1["FirstObjectDistance_Y"])
+   
+    plt.plot(df["Timestamp"],[df["FirstObjectDistance_X"],df["FirstObjectDistance_Y"]], )
     
     plt.show()
     pass
